@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640" width="980" height="640" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Arquitectura de doble cerebro de la Arduino UNO Q</title>
+  <desc id="desc">Diagrama de bloques: MPU Qualcomm QRB2210 con Debian Linux a la izquierda, MCU STM32U585 con Zephyr RTOS a la derecha, unidos por arduino-router y un enlace serie interno. Abajo, el PC host conectado por USB-C.</desc>
+
+  <defs>
+    <style>
+      .bg      { fill: #0d1117; }
+      .panel   { fill: #161b22; stroke: #30363d; stroke-width: 1.5; }
+      .panel-m { fill: #1a1426; stroke: #6e40c9; stroke-width: 2; }
+      .panel-c { fill: #0f1f16; stroke: #238636; stroke-width: 2; }
+      .sub     { fill: #0d1117; stroke: #30363d; stroke-width: 1; }
+      .t-title { fill: #e6edf3; font: 700 24px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-sub   { fill: #8b949e; font: 400 14px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-h     { fill: #e6edf3; font: 700 17px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-b     { fill: #c9d1d9; font: 400 13px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-s     { fill: #8b949e; font: 400 12px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .mono    { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .purple  { fill: #bc8cff; }
+      .green   { fill: #3fb950; }
+      .blue    { fill: #58a6ff; }
+      .orange  { fill: #d29922; }
+      .red     { fill: #f85149; }
+      .muted   { fill: #8b949e; }
+      .wire    { stroke: #58a6ff; stroke-width: 2.5; fill: none; }
+      .wire-g  { stroke: #3fb950; stroke-width: 2.5; fill: none; }
+      .wire-d  { stroke: #8b949e; stroke-width: 2; fill: none; stroke-dasharray: 6 4; }
+      .labelbox{ fill: #0d1117; stroke: #30363d; stroke-width: 1; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#58a6ff"/>
+    </marker>
+    <marker id="arrow-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3fb950"/>
+    </marker>
+    <marker id="arrow-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b949e"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="980" height="640" rx="0"/>
+  <text class="t-title" x="40" y="48">Arduino UNO Q — dos cerebros, un header</text>
+  <text class="t-sub" x="40" y="72">MPU para pensar · MCU para tocar el mundo físico</text>
+
+  <!-- ============ MPU ============ -->
+  <rect class="panel-m" x="40" y="100" width="350" height="300" rx="12"/>
+  <text class="t-h" x="60" y="132">MPU · Qualcomm QRB2210</text>
+  <text class="t-b purple" x="60" y="156">Debian Linux (upstream)</text>
+
+  <text class="t-b" x="60" y="186">• 4× Cortex-A53 @ 2.0 GHz</text>
+  <text class="t-b" x="60" y="208">• GPU Adreno · 2× ISP</text>
+  <text class="t-b" x="60" y="230">• LPDDR4 + eMMC</text>
+  <text class="t-b" x="60" y="252">• Wi-Fi 5 · Bluetooth 5.1</text>
+
+  <rect class="sub" x="60" y="272" width="310" height="104" rx="8"/>
+  <text class="t-s" x="74" y="294">procesos del usuario</text>
+  <text class="t-b mono" x="74" y="316">python main.py</text>
+  <text class="t-b mono" x="74" y="338">Bridge.call(...)</text>
+  <text class="t-b mono" x="74" y="360">sysfs · /sys/class/leds</text>
+
+  <!-- ============ MCU ============ -->
+  <rect class="panel-c" x="590" y="100" width="350" height="300" rx="12"/>
+  <text class="t-h" x="610" y="132">MCU · STM32U585</text>
+  <text class="t-b green" x="610" y="156">Zephyr RTOS</text>
+
+  <text class="t-b" x="610" y="186">• Cortex-M33 @ 160 MHz</text>
+  <text class="t-b" x="610" y="208">• FPU + TrustZone</text>
+  <text class="t-b" x="610" y="230">• 2 MB flash · 786 KB SRAM</text>
+  <text class="t-b" x="610" y="252">• ADC 12 bit · PWM 8 bit</text>
+
+  <rect class="sub" x="610" y="272" width="310" height="104" rx="8"/>
+  <text class="t-s" x="624" y="294">firmware del sketch</text>
+  <text class="t-b mono" x="624" y="316">unoq_gpio_control.ino</text>
+  <text class="t-b mono" x="624" y="338">digitalWrite(13, HIGH)</text>
+  <text class="t-b mono" x="624" y="360">Arduino_LED_Matrix</text>
+
+  <!-- ============ Puente ============ -->
+  <rect class="panel" x="410" y="128" width="160" height="118" rx="10"/>
+  <text class="t-s" x="490" y="152" text-anchor="middle">enlace interno</text>
+  <text class="t-h mono" x="490" y="176" text-anchor="middle" style="font-size:13px">arduino-router</text>
+  <text class="t-s mono" x="490" y="198" text-anchor="middle">TCP 127.0.0.1:7500</text>
+  <text class="t-s mono" x="490" y="218" text-anchor="middle">MessagePack RPC</text>
+  <text class="t-s mono" x="490" y="238" text-anchor="middle">$/register · $/unregister</text>
+
+  <rect class="labelbox" x="424" y="272" width="132" height="26" rx="6"/>
+  <text class="t-s mono" x="490" y="290" text-anchor="middle">UART / serie</text>
+
+  <path class="wire" d="M 390 158 L 406 158" marker-end="url(#arrow)"/>
+  <path class="wire" d="M 574 158 L 586 158" marker-end="url(#arrow)"/>
+  <path class="wire" d="M 410 286 L 394 286" marker-end="url(#arrow)"/>
+  <path class="wire" d="M 570 286 L 586 286" marker-end="url(#arrow)"/>
+
+  <!-- ============ Host ============ -->
+  <rect class="panel" x="330" y="500" width="320" height="100" rx="10"/>
+  <text class="t-h" x="350" y="528">PC host</text>
+  <text class="t-b mono" x="350" y="550">/dev/ttyACM0 · 115200</text>
+  <text class="t-b mono" x="350" y="572">pyserial · adb</text>
+
+  <path class="wire-d" d="M 490 500 L 490 420 L 490 404" marker-end="url(#arrow-m)"/>
+  <path class="wire-d" d="M 400 500 L 400 404" marker-end="url(#arrow-m)"/>
+  <text class="t-s" x="505" y="470">USB-C: CDC ACM (MCU) + ADB (MPU)</text>
+
+  <!-- ============ Header / pines ============ -->
+  <rect class="panel" x="760" y="470" width="180" height="130" rx="10"/>
+  <text class="t-s" x="776" y="494">header UNO</text>
+  <text class="t-b mono" x="776" y="516">D0–D13</text>
+  <text class="t-b mono" x="776" y="538">A0–A5 · ADC</text>
+  <text class="t-b mono" x="776" y="560">D3/5/6/9/10/11 · PWM</text>
+  <text class="t-s red" x="776" y="584">sin LED en D13</text>
+
+  <path class="wire-g" d="M 700 400 L 700 440 L 760 440 L 760 500" marker-end="url(#arrow-g)"/>
+
+  <!-- ============ Matriz ============ -->
+  <rect class="sub" x="590" y="430" width="150" height="54" rx="8"/>
+  <text class="t-s" x="604" y="450">matriz LED 12×8</text>
+  <text class="t-s mono" x="604" y="470" style="font-size:11px">GPIOF 0 · onboard</text>
+  <path class="wire-g" d="M 640 400 L 640 426" marker-end="url(#arrow-g)"/>
+
+  <!-- ============ Leyenda ============ -->
+  <text class="t-s" x="40" y="596">3.3 V en toda la lógica</text>
+  <text class="t-s" x="40" y="616">El sketch no habla con Linux: el host habla con ambos por caminos separados.</text>
+</svg>

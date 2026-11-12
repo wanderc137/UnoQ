@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 540" width="1040" height="540" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Flujo de un comando GPIO: de Python al pin</title>
+  <desc id="desc">Recorrido de un comando WRITE 13 1 desde el cliente Python en el PC, por USB CDC ACM, hasta el sketch en el STM32U585, el pin D13, la resistencia y el LED; y el camino de vuelta de la respuesta OK 1.</desc>
+
+  <defs>
+    <style>
+      .bg     { fill: #0d1117; }
+      .box    { fill: #161b22; stroke: #30363d; stroke-width: 1.5; }
+      .box-a  { fill: #101c2c; stroke: #1f6feb; stroke-width: 1.5; }
+      .box-b  { fill: #0f1f16; stroke: #238636; stroke-width: 1.5; }
+      .box-c  { fill: #1a1426; stroke: #6e40c9; stroke-width: 1.5; }
+      .t-title{ fill: #e6edf3; font: 700 24px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-sub  { fill: #8b949e; font: 400 14px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-h    { fill: #e6edf3; font: 700 15px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-b    { fill: #c9d1d9; font: 400 12.5px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-s    { fill: #8b949e; font: 400 11.5px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .mono   { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .blue   { fill: #58a6ff; }
+      .green  { fill: #3fb950; }
+      .purple { fill: #bc8cff; }
+      .orange { fill: #d29922; }
+      .red    { fill: #f85149; }
+      .wire   { stroke: #58a6ff; stroke-width: 2.5; fill: none; }
+      .wire-r { stroke: #d29922; stroke-width: 2; fill: none; stroke-dasharray: 5 4; }
+      .wire-g { stroke: #3fb950; stroke-width: 2; fill: none; }
+    </style>
+    <marker id="a-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#58a6ff"/>
+    </marker>
+    <marker id="a-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d29922"/>
+    </marker>
+    <marker id="a-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3fb950"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1040" height="540"/>
+
+  <text class="t-title" x="40" y="46">Un comando, cinco estaciones</text>
+  <text class="t-sub" x="40" y="70">WRITE 13 1 · de Python al pin y de vuelta, sin Bridge en el medio</text>
+
+  <!-- 1. Cliente -->
+  <rect class="box-a" x="30" y="120" width="180" height="150" rx="10"/>
+  <text class="t-h" x="46" y="148">1 · Cliente Python</text>
+  <text class="t-s" x="46" y="168">PC host</text>
+  <text class="t-b mono" x="46" y="196">send_command(</text>
+  <text class="t-b mono" x="46" y="214">  "WRITE 13 1")</text>
+  <text class="t-s" x="46" y="242">agrega \n y hace flush</text>
+
+  <!-- 2. USB -->
+  <rect class="box" x="245" y="120" width="170" height="150" rx="10"/>
+  <text class="t-h" x="261" y="148">2 · USB CDC ACM</text>
+  <text class="t-s" x="261" y="168">capa física</text>
+  <text class="t-b mono" x="261" y="196">/dev/ttyACM0</text>
+  <text class="t-b mono" x="261" y="214">115200 8N1</text>
+  <text class="t-s" x="261" y="242">sin control de flujo</text>
+
+  <!-- 3. Sketch -->
+  <rect class="box-b" x="450" y="100" width="230" height="190" rx="10"/>
+  <text class="t-h" x="466" y="128">3 · loop() en el MCU</text>
+  <text class="t-s" x="466" y="147">Zephyr · STM32U585</text>
+  <text class="t-b mono" x="466" y="172">leerLinea()</text>
+  <text class="t-b mono" x="466" y="192">firstToken = "WRITE"</text>
+  <text class="t-b mono" x="466" y="212">parsearPin("13") → 13</text>
+  <text class="t-b mono" x="466" y="232">valida 0 ≤ pin ≤ 19</text>
+  <text class="t-b mono" x="466" y="252">valor "1" → HIGH</text>
+  <text class="t-s" x="466" y="274">timeout de línea: 1 s</text>
+
+  <!-- 4. GPIO -->
+  <rect class="box-b" x="715" y="120" width="180" height="150" rx="10"/>
+  <text class="t-h" x="731" y="148">4 · GPIO</text>
+  <text class="t-s" x="731" y="168">driver de Zephyr</text>
+  <text class="t-b mono" x="731" y="196">pinMode(13,</text>
+  <text class="t-b mono" x="731" y="214">         OUTPUT)</text>
+  <text class="t-b mono" x="731" y="236">digitalWrite(13, HIGH)</text>
+
+  <!-- 5. LED -->
+  <rect class="box" x="920" y="120" width="90" height="150" rx="10"/>
+  <text class="t-h" x="930" y="148">5 · LED</text>
+  <text class="t-s" x="936" y="168">D13</text>
+  <!-- resistor -->
+  <path class="wire-g" d="M 930 196 L 946 196"/>
+  <rect x="946" y="188" width="26" height="16" rx="2" fill="#0d1117" stroke="#d29922" stroke-width="1.5"/>
+  <text class="t-s mono" x="948" y="200" style="font-size:9px">220</text>
+  <path class="wire-g" d="M 972 196 L 984 196"/>
+  <!-- LED symbol -->
+  <path d="M 984 186 L 984 206 L 998 196 Z" fill="#d29922" stroke="#d29922" stroke-width="1"/>
+  <path class="wire-g" d="M 998 186 L 998 206" stroke-width="2.5"/>
+  <text class="t-s" x="930" y="228">ánodo → cátodo</text>
+
+  <!-- flechas ida -->
+  <path class="wire" d="M 210 195 L 241 195" marker-end="url(#a-blue)"/>
+  <path class="wire" d="M 415 195 L 446 195" marker-end="url(#a-blue)"/>
+  <path class="wire" d="M 680 195 L 711 195" marker-end="url(#a-blue)"/>
+  <path class="wire" d="M 895 195 L 916 195" marker-end="url(#a-blue)"/>
+
+  <!-- etiqueta de trama -->
+  <rect x="248" y="286" width="164" height="26" rx="6" fill="#0d1117" stroke="#1f6feb" stroke-width="1"/>
+  <text class="t-s mono" x="330" y="303" text-anchor="middle" fill="#58a6ff">"WRITE 13 1\n"</text>
+
+  <!-- camino de vuelta -->
+  <path class="wire-r" d="M 1000 300 L 1000 360 L 120 360 L 120 274" marker-end="url(#a-orange)"/>
+  <rect x="470" y="347" width="100" height="26" rx="6" fill="#0d1117" stroke="#d29922" stroke-width="1"/>
+  <text class="t-s mono" x="520" y="364" text-anchor="middle" fill="#d29922">"OK 1\n"</text>
+  <text class="t-s" x="620" y="364" fill="#8b949e">respuesta por Serial.println()</text>
+
+  <!-- notas -->
+  <rect class="box" x="30" y="405" width="470" height="105" rx="10"/>
+  <text class="t-h" x="46" y="431">Camino de ida</text>
+  <text class="t-b" x="46" y="453">Texto ASCII + salto de línea. El sketch responde una sola línea por comando.</text>
+  <text class="t-b" x="46" y="473">Latencia típica: 1–10 ms, dominada por USB y el timeout de lectura.</text>
+  <text class="t-b" x="46" y="493">La validación ocurre en el MCU: pin fuera de rango no toca hardware.</text>
+
+  <rect class="box" x="540" y="405" width="470" height="105" rx="10"/>
+  <text class="t-h" x="556" y="431">Qué NO hay en este camino</text>
+  <text class="t-b" x="556" y="453">No hay Linux en el medio: el cliente corre en el PC.</text>
+  <text class="t-b" x="556" y="473">No hay Bridge ni MessagePack: son líneas de texto plano.</text>
+  <text class="t-b red" x="556" y="493">No hay autenticación: es un bus local, no lo expongas.</text>
+</svg>

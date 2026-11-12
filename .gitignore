@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.pylibs/
+.pipboot/
+
+# Entorno y temporales
+.env
+.DS_Store
+*.log
+*.pid
+*.tmp
+
+# Documentos internos del pipeline
+**/PLAN.md
+**/AUDIT_REPORT.md

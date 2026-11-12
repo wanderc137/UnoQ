@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Pinout usado por los ejemplos de UNO Q Lab</title>
+  <desc id="desc">Mapa lógico de los pines del header de la Arduino UNO Q: D0 a D13, A0 a A5, alimentación, y las capacidades de cada uno (PWM, ADC, UART). Incluye la matriz LED interna y advertencias.</desc>
+
+  <defs>
+    <style>
+      .bg     { fill: #0d1117; }
+      .card   { fill: #161b22; stroke: #30363d; stroke-width: 1.5; }
+      .row    { fill: #0d1117; stroke: #21262d; stroke-width: 1; }
+      .row-hi { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+      .t-title{ fill: #e6edf3; font: 700 24px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-sub  { fill: #8b949e; font: 400 14px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-h    { fill: #e6edf3; font: 700 15px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .pin    { fill: #e6edf3; font: 700 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .num    { fill: #8b949e; font: 400 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .t-b    { fill: #c9d1d9; font: 400 12px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .t-s    { fill: #8b949e; font: 400 11.5px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .badge  { font: 700 9.5px ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; letter-spacing: .4px; }
+      .pw     { fill: #d29922; }
+      .ad     { fill: #58a6ff; }
+      .ur     { fill: #bc8cff; }
+      .mx     { fill: #3fb950; }
+      .rd     { fill: #f85149; }
+      .dot    { stroke: none; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="900" height="700"/>
+
+  <text class="t-title" x="36" y="44">Pinout de los ejemplos</text>
+  <text class="t-sub" x="36" y="68">UNO Q · lógica 3.3 V · ADC 12 bit · PWM 8 bit</text>
+
+  <!-- ============ Columna digital ============ -->
+  <rect class="card" x="30" y="92" width="400" height="556" rx="12"/>
+  <text class="t-h" x="50" y="120">Header digital</text>
+  <text class="t-s" x="50" y="138">D0–D13 · 14 pines</text>
+
+  <!-- filas -->
+  <g>
+    <!-- helper pattern: y base 158, step 33 -->
+    <rect class="row-hi" x="44" y="152" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="172">D13</text>
+    <text class="num" x="92" y="172">13</text>
+    <text class="t-s" x="126" y="172">GPIO libre · sin LED onboard</text>
+    <circle class="rd dot" cx="394" cy="167" r="4"/>
+    <text class="badge rd" x="372" y="171" text-anchor="end">SIN LED</text>
+
+    <rect class="row" x="44" y="185" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="205">D12</text>
+    <text class="num" x="92" y="205">12</text>
+    <text class="t-s" x="126" y="205">GPIO libre</text>
+
+    <rect class="row-hi" x="44" y="218" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="238">D11</text>
+    <text class="num" x="92" y="238">11</text>
+    <text class="t-s" x="126" y="238">PWM 0–255</text>
+    <text class="badge pw" x="404" y="237" text-anchor="end">PWM</text>
+
+    <rect class="row" x="44" y="251" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="271">D10</text>
+    <text class="num" x="92" y="271">10</text>
+    <text class="t-s" x="126" y="271">PWM 0–255</text>
+    <text class="badge pw" x="404" y="270" text-anchor="end">PWM</text>
+
+    <rect class="row-hi" x="44" y="284" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="304">D9</text>
+    <text class="num" x="92" y="304">9</text>
+    <text class="t-s" x="126" y="304">PWM 0–255 · LED externo típico</text>
+    <text class="badge pw" x="404" y="303" text-anchor="end">PWM</text>
+
+    <rect class="row" x="44" y="317" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="337">D8</text>
+    <text class="num" x="92" y="337">8</text>
+    <text class="t-s" x="126" y="337">GPIO libre</text>
+
+    <rect class="row-hi" x="44" y="350" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="370">D7</text>
+    <text class="num" x="92" y="370">7</text>
+    <text class="t-s" x="126" y="370">GPIO libre</text>
+
+    <rect class="row" x="44" y="383" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="403">D6</text>
+    <text class="num" x="92" y="403">6</text>
+    <text class="t-s" x="126" y="403">PWM 0–255</text>
+    <text class="badge pw" x="404" y="402" text-anchor="end">PWM</text>
+
+    <rect class="row-hi" x="44" y="416" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="436">D5</text>
+    <text class="num" x="92" y="436">5</text>
+    <text class="t-s" x="126" y="436">PWM 0–255</text>
+    <text class="badge pw" x="404" y="435" text-anchor="end">PWM</text>
+
+    <rect class="row" x="44" y="449" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="469">D4</text>
+    <text class="num" x="92" y="469">4</text>
+    <text class="t-s" x="126" y="469">GPIO libre</text>
+
+    <rect class="row-hi" x="44" y="482" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="502">D3</text>
+    <text class="num" x="92" y="502">3</text>
+    <text class="t-s" x="126" y="502">PWM 0–255</text>
+    <text class="badge pw" x="404" y="501" text-anchor="end">PWM</text>
+
+    <rect class="row" x="44" y="515" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="535">D2</text>
+    <text class="num" x="92" y="535">2</text>
+    <text class="t-s" x="126" y="535">GPIO · pulsador con pull-up</text>
+
+    <rect class="row-hi" x="44" y="548" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="568">D1</text>
+    <text class="num" x="92" y="568">1</text>
+    <text class="t-s" x="126" y="568">TX USART1 · evitar como GPIO</text>
+    <text class="badge ur" x="404" y="567" text-anchor="end">UART</text>
+
+    <rect class="row" x="44" y="581" width="372" height="30" rx="5"/>
+    <text class="pin" x="56" y="601">D0</text>
+    <text class="num" x="92" y="601">0</text>
+    <text class="t-s" x="126" y="601">RX USART1 · evitar como GPIO</text>
+    <text class="badge ur" x="404" y="600" text-anchor="end">UART</text>
+  </g>
+
+  <text class="t-s" x="50" y="634">Todos arrancan como INPUT; los PWM pasan a OUTPUT LOW en setup().</text>
+
+  <!-- ============ Columna analógica ============ -->
+  <rect class="card" x="455" y="92" width="415" height="330" rx="12"/>
+  <text class="t-h" x="475" y="120">Header analógico y alimentación</text>
+  <text class="t-s" x="475" y="138">A0–A5 · ADC 12 bit (0–4095)</text>
+
+  <g>
+    <rect class="row-hi" x="469" y="152" width="387" height="30" rx="5"/>
+    <text class="pin" x="481" y="172">A5</text>
+    <text class="num" x="513" y="172">19</text>
+    <text class="t-s" x="547" y="172">ADC · SCL de I2C</text>
+    <text class="badge ad" x="850" y="171" text-anchor="end">ADC</text>
+
+    <rect class="row" x="469" y="185" width="387" height="30" rx="5"/>
+    <text class="pin" x="481" y="205">A4</text>
+    <text class="num" x="513" y="205">18</text>
+    <text class="t-s" x="547" y="205">ADC · SDA de I2C</text>
+    <text class="badge ad" x="850" y="204" text-anchor="end">ADC</text>
+
+    <rect class="row-hi" x="469" y="218" width="387" height="30" rx="5"/>
+    <text class="pin" x="481" y="238">A3</text>
+    <text class="num" x="513" y="238">17</text>
+    <text class="t-s" x="547" y="238">ADC · también digital</text>
+    <text class="badge ad" x="850" y="237" text-anchor="end">ADC</text>
+
+    <rect class="row" x="469" y="251" width="387" height="30" rx="5"/>
+    <text class="pin" x="481" y="271">A2</text>
+    <text class="num" x="513" y="271">16</text>
+    <text class="t-s" x="547" y="271">ADC · también digital</text>
+    <text class="badge ad" x="850" y="270" text-anchor="end">ADC</text>
+
+    <rect class="row-hi" x="469" y="284" width="387" height="30" rx="5"/>
+    <text class="pin" x="481" y="304">A1</text>
+    <text class="num" x="513" y="304">15</text>
+    <text class="t-s" x="547" y="304">ADC · también digital</text>
+    <text class="badge ad" x="850" y="303" text-anchor="end">ADC</text>
+
+    <rect class="row" x="469" y="317" width="387" height="30" rx="5"/>
+    <text class="pin" x="481" y="337">A0</text>
+    <text class="num" x="513" y="337">14</text>
+    <text class="t-s" x="547" y="337">ADC · potenciómetro típico</text>
+    <text class="badge ad" x="850" y="336" text-anchor="end">ADC</text>
+
+    <rect class="row-hi" x="469" y="350" width="387" height="30" rx="5"/>
+    <text class="pin" x="481" y="370">3V3</text>
+    <text class="t-s" x="547" y="370">Rail de 3.3 V para sensores</text>
+
+    <rect class="row" x="469" y="383" width="387" height="30" rx="5"/>
+    <text class="pin" x="481" y="403">GND</text>
+    <text class="t-s" x="547" y="403">Referencia común obligatoria</text>
+  </g>
+
+  <text class="t-s" x="475" y="418">Notación aceptada por el sketch: 14, A0, a0.</text>
+
+  <!-- ============ Matriz ============ -->
+  <rect class="card" x="455" y="442" width="415" height="120" rx="12"/>
+  <text class="t-h" x="475" y="470">Matriz LED · interna</text>
+  <text class="t-b" x="475" y="492">12×8 píxeles · canvas lógico 13×8 · GPIOF 0</text>
+  <text class="t-b" x="475" y="512">Gestionada por Arduino_LED_Matrix vía device tree.</text>
+  <text class="t-b mx" x="475" y="532">No comparte pines con D0–D19: sin conflicto.</text>
+  <text class="t-s" x="475" y="550">Comandos: MATRIX CLEAR / LINE1 / LINE2 / SHOW / TINYSCROLL</text>
+
+  <!-- ============ Leyenda ============ -->
+  <rect class="card" x="455" y="578" width="415" height="70" rx="12"/>
+  <circle class="pw dot" cx="477" cy="601" r="4"/>
+  <text class="t-s" x="488" y="605">PWM</text>
+  <circle class="ad dot" cx="543" cy="601" r="4"/>
+  <text class="t-s" x="554" y="605">ADC 12 bit</text>
+  <circle class="ur dot" cx="630" cy="601" r="4"/>
+  <text class="t-s" x="641" y="605">UART</text>
+  <circle class="rd dot" cx="692" cy="601" r="4"/>
+  <text class="t-s" x="703" y="605">Advertencia</text>
+  <text class="t-s" x="477" y="630">3.3 V en toda la lógica · 20 mA por pin · 100 mA total</text>
+</svg>
