@@ -598,6 +598,57 @@ Lista completa, con para qué sirve cada enlace, en [`docs/REFERENCES.md`](docs/
 
 ---
 
+## Ficha de evaluación
+
+**Madurez global: 4.0/5**
+
+| Criterio | Nota | Evidencia |
+|---|---:|---|
+| Madurez | 4/5 | Dos ejemplos compilados y verificados en hardware, con 74.940 bytes de flash y 26.964 de RAM estática; no hay tests automatizados. |
+| Reproducibilidad | 4/5 | Comandos exactos con FQBN arduino:zephyr:unoq y workaround de serialNumber; depende de ADB, OpenOCD y permisos del host. |
+| Documentación | 4/5 | README, datasheet y developer extensos, más la bitácora del control GPIO; los documentos de planificación y auditoría no se publican. |
+| Honestidad de límites | 5/5 | Admite D13 sin LED, TEMP experimental, ADC flotante con ruido y ausencia de tests o autenticación. |
+| Valor demostrativo | 4/5 | Explica el reparto MPU/MCU y expone GPIO, ADC, PWM y matriz por un protocolo de texto fácil de inspeccionar. |
+| Facilidad de despliegue | 3/5 | Requiere arduino-cli, ADB, OpenOCD y SWD; sin bootloader, un fallo de adb o del número de serie bloquea toda la carga. |
+
+Sirve como punto de partida verificado para quien recién llega a la UNO Q y necesita probar toolchain, GPIO y matriz sin capas intermedias. La limitación que más pesa es la fragilidad del flujo de carga por ADB y la falta de pruebas automatizadas.
+
+## Lo que no funcionó
+
+### Etapa 1 · blink — D13 sin LED onboard
+
+El ejemplo asumía un LED integrado en D13 como en el Uno clásico, pero la UNO Q no lo tiene y los LEDs visibles los maneja Linux. Se documentó el LED externo con resistencia de 220 Ω y se usó la matriz de 12×8 como salida visible para las pruebas.
+
+### Etapa 2 · parser de pines — parsearPin("A") devolvía A0
+
+El sufijo vacío se convertía en 0 y el pin analógico inválido pasaba como A0 en vez de fallar. Se validó la longitud del sufijo antes de convertir (I-001) y se verificó con READ A, que ahora responde ERROR pin invalido.
+
+### Etapa 2 · protocolo serie — leerLinea() sin timeout
+
+La lectura esperaba un salto de línea en un busy-wait sin límite, así que una trama incompleta bloqueaba el loop y el resto de los comandos. Se agregó un timeout de 1 s con millis reiniciado por byte (I-002).
+
+### Etapa 2 · matriz LED — Subcomandos MATRIX sensibles a mayúsculas
+
+MATRIX CLEAR funcionaba pero MATRIX clear se rechazaba porque solo se convertía a mayúsculas el primer token. Se normalizó el subcomando antes de comparar y se conservó el texto de entrada sin alterar (I-009).
+
+## Preguntas típicas
+
+**¿Qué contiene?**
+
+Dos ejemplos: blink para validar compilación y carga, y unoq_gpio_control, un servidor serie con READ, WRITE, ANALOG, PWM, MATRIX y TEMP. Incluye además clientes Python y control de LEDs de Linux por ADB.
+
+**¿Sirve para producción o como librería?**
+
+No. Es un laboratorio de referencia sin autenticación, cifrado ni tests, con TEMP experimental y límites de 3,3 V, 20 mA por pin y 100 mA totales. La matriz y el mapa de pines son específicos de la UNO Q.
+
+**¿Cómo se compila y se carga?**
+
+Se usa arduino-cli compile y upload con FQBN arduino:zephyr:unoq; la carga pasa por ADB, OpenOCD y SWD. Si el puerto aparece como ttyACM1, el script lo autodetecta o se pasa el serialNumber.
+
+**¿Qué se puede reutilizar?**
+
+El parser de comandos y el mapa de pines, el manejo de la matriz de 12×8 con fuentes 5×7, el cliente Python y el control de LEDs por sysfs. También la tabla de pruebas reales con sus respuestas esperadas.
+
 ## Licencia
 
 MIT. Ver [`LICENSE`](LICENSE).
