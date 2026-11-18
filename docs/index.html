@@ -290,7 +290,8 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 .concept-side p{font-size:13px;margin:6px 0 16px}
 @media(max-width:760px){.concept-grid,.fail-grid{grid-template-columns:1fr}.concept-side{border-left:0;padding-left:0}}
 
-</style><link href="assets/community.css?v=5" rel="stylesheet"/></head>
+</style><link href="assets/community.css?v=5" rel="stylesheet"/><link href="rec/player.css?v=1" rel="stylesheet"/>
+</head>
 <body style="--accent:#00D8C0;--accent2:#2E7DFF">
 <div class="grid-overlay"></div>
 <div class="glow one"></div>
@@ -305,6 +306,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 <a href="#problema">Visión</a>
 <a href="#como">Cómo funciona</a>
 <a href="#arquitectura">Arquitectura</a>
+<a href="#video">Video</a>
 <a href="#docs">Documentación</a>
 <a href="#comunidad">Comunidad</a>
 <a class="btn btn-ghost" href="https://github.com/wanderc137/UnoQ" rel="noopener" style="padding:9px 15px" target="_blank">GitHub</a>
@@ -354,6 +356,45 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 <div class="timeline reveal"><div class="step"><div class="step-num">01</div><div class="step-body"><h3>Blink honesto</h3><p>D13 no tiene LED onboard. El ejemplo lo documenta y muestra cómo verificar con un LED externo o con la matriz de la placa.</p></div></div><div class="step"><div class="step-num">02</div><div class="step-body"><h3>Protocolo de comandos</h3><p>El sketch expone GPIO, ADC de 12 bits, PWM, matriz 12×8 y temperatura interna por Serial USB CDC.</p></div></div><div class="step"><div class="step-num">03</div><div class="step-body"><h3>Clientes Python</h3><p>Dos clientes: uno interactivo para el header y otro remoto vía ADB para los LEDs que administra Linux.</p></div></div><div class="step"><div class="step-num">04</div><div class="step-body"><h3>Verificación</h3><p>Comandos de lectura y escritura, formato del puerto, `adb devices` y diagnóstico cuando el upload no engancha.</p></div></div><div class="step"><div class="step-num">05</div><div class="step-body"><h3>Migración a Bridge</h3><p>El README explica la arquitectura nativa arduino-router y qué cambiaría para usarla en una versión futura.</p></div></div></div>
 </div>
 </section>
+
+<section class="section tight rec-section" id="video" style="--accent:#2E7DFF;--accent2:#14F195">
+<div class="wrap">
+<div class="rec-kicker">REC · VIDEO · 2:53</div>
+<h2 class="rec-h2">UnoQ · dos cerebros, un protocolo de texto</h2>
+<p class="rec-lead">Recorrido por los dos ejemplos de la Arduino UNO Q: el blink mínimo y el controlador GPIO que corre en el STM32U585, con protocolo ASCII, matriz LED, lectura de pines, PWM, ADC y un cliente Python en el host.</p>
+<div class="rec-banner">
+<span class="rec-banner-icon">📋</span>
+<strong>Puedes copiar y pegar los comandos del video desde el video !!!</strong>
+<span>Pausá, seleccioná el texto de la terminal y copiá.</span>
+</div>
+<div class="rec-shell">
+<div class="rec-bar"><i></i><i></i><i></i><span class="rec-title">UnoQ · dos cerebros, un protocolo de texto · asciinema</span><span class="rec-rec"><b></b>REC</span></div>
+<div class="rec-screen-wrap">
+<div class="rec-screen" id="rec-screen"></div>
+<div class="rec-poster" id="rec-poster">
+<div class="rec-kicker">ASCIINEMA · 2:53</div>
+<h3>UnoQ · dos cerebros, un protocolo de texto</h3>
+<p>Recorrido por los dos ejemplos de la Arduino UNO Q: el blink mínimo y el controlador GPIO que corre en el STM32U585, con protocolo ASCII, matriz LED, lectura de pines, PWM, ADC y un cliente Python en el host.</p>
+<div class="rec-poster-meta">UnoQ · código real</div>
+<button class="rec-btn rec-primary" id="rec-start" type="button">▶ Reproducir</button>
+</div>
+</div>
+<div class="rec-controls">
+<button class="rec-btn rec-primary" id="rec-play" type="button">▶ Reproducir</button>
+<button class="rec-btn" id="rec-restart" type="button">↺ Reiniciar</button>
+<input class="rec-progress" id="rec-range" type="range" min="0" max="1000" value="0" aria-label="Progreso"/>
+<span class="rec-time" id="rec-time">0:00 / 2:53</span>
+<select class="rec-speed" id="rec-speed" aria-label="Velocidad"><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+<button class="rec-btn" id="rec-full" type="button" title="Pantalla completa">⛶</button>
+<button class="rec-btn" id="rec-copy" type="button">⧉ Copiar comandos</button>
+<a class="rec-download" href="rec/UnoQ.cast" download>descargar .cast</a>
+</div>
+</div>
+<p class="rec-note">Video generado a partir del código real del repositorio. Los fragmentos corresponden a los archivos y líneas indicados. El puerto /dev/ttyACM0 puede variar según el host; se muestra el valor por defecto del cliente.</p>
+<div class="rec-chapters"><span class="rec-chip"><b>0:06</b> EL PROBLEMA</span><span class="rec-chip"><b>0:21</b> PRIMER CONTACTO</span><span class="rec-chip"><b>0:32</b> ARRANQUE</span><span class="rec-chip"><b>0:46</b> EL BUCLE</span><span class="rec-chip"><b>0:59</b> EL PARSER</span><span class="rec-chip"><b>1:15</b> LECTURA SERIE</span><span class="rec-chip"><b>1:28</b> PINES</span><span class="rec-chip"><b>1:41</b> ESCRITURA</span><span class="rec-chip"><b>1:52</b> ADC Y PWM</span><span class="rec-chip"><b>2:04</b> EL CLIENTE</span><span class="rec-chip"><b>2:17</b> EL LINUX DE LA PLACA</span><span class="rec-chip"><b>2:31</b> CÓMO EJECUTARLO</span></div>
+</div>
+</section>
+
 <section class="section tight" id="arquitectura">
 <div class="wrap">
 <div class="section-head reveal">
@@ -467,5 +508,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 </script>
 <script>window.PORTFOLIO_COMMUNITY = {"account": "wanderc137", "repo": "UnoQ", "coinNamespace": "wanderc137-unoq-coins-v1", "faqs": [{"q": "¿Qué significa «dos cerebros, un solo pin»?", "a": "La UNO Q combina un <b>MPU Linux</b> (Qualcomm QRB2210) con un <b>MCU STM32U585</b>. El Linux corre la aplicación y el MCU ejecuta GPIO en tiempo real; los ejemplos muestran cómo se coordinan."}, {"q": "¿Los ejemplos usan arduino-router o Bridge?", "a": "No. Los sketches usan <b>Serial USB CDC ACM</b>. Bridge/arduino-router se documenta como la arquitectura nativa de la placa y como vía de migración, pero el código de estos ejemplos no lo usa."}, {"q": "¿Qué hace el ejemplo gpio_control?", "a": "Controla la matriz 12×8, lee botones, mide temperatura y escribe texto. El cliente Python se conecta por serial y el sketch mantiene el estado del hardware."}, {"q": "¿Cómo cargo los sketches?", "a": "Con <code>arduino-cli</code> o App Lab, seleccionando la placa UNO Q. El README y el datasheet tienen los comandos, el pinout y las advertencias de voltaje."}, {"q": "¿Qué límites tienen los ejemplos?", "a": "Son didácticos: no son un producto, no cubren todos los pines y el header es de <b>3,3 V</b>. El pinout y las advertencias están documentados."}]};</script>
 <script defer="" src="assets/community.js?v=6"></script>
+<script defer src="rec/UnoQ.cast.js?v=1"></script>
+<script defer src="rec/player.js?v=1"></script>
 </body>
 </html>
